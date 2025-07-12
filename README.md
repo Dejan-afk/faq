@@ -51,4 +51,7 @@ php artisan key:generate
 
 # Start der Datenbank und phpMyAdmin (Docker)
 docker-compose up -d
+
+#Migration und Seeding bei Erstanwendung
+docker exec -it faq_app php artisan migrate:fresh --seed
 ```
