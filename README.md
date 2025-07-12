@@ -27,6 +27,16 @@ Willkommen zum DEKRA FAQ-Projekt! Diese Webanwendung ist Teil einer Full-Stack-C
 
 ---
 
+## ⚠️ Hinweis zur Sicherheit
+
+Die verwendeten **Datenbank-Zugangsdaten** (`faq_user` / `neo`) sind ausschließlich für die **lokale Entwicklung** gedacht.
+
+Diese werden beim Start des Projekts **automatisch im Docker-Netzwerk erzeugt** und besitzen **keine externe Reichweite**.
+
+> 🧪 Dieses Setup dient der **Demonstration** und dem **einfachen Einstieg** – **nicht** für den produktiven Einsatz geeignet!
+
+---
+
 ### 🔧 Installation & Start
 
 ```bash
