@@ -1,18 +1,26 @@
 <?php
 
+use App\Models\Faq;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Faq/Index', [
+        'faqs' => Faq::all(),
+    ]);
+})->name('faq.index');
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create']);
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::middleware('auth')->group(function () {
+    Route::middleware('admin')->group(function () {
+        Route::resource('faqs', FaqController::class);
+    });
+    
 });
+
+require __DIR__.'/auth.php';
