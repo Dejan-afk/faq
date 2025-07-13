@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FaqController extends Controller
 {
@@ -12,7 +13,9 @@ class FaqController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Admin/Faq', [
+            'faqs' => Faq::all(),
+        ]);
     }
 
     /**

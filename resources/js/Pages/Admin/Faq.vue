@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import AppLayout from '@/Layouts/AppLayout.vue'
+defineOptions({ layout: AppLayout })
 export default {
     name: 'FaqAdmin',
 };
