@@ -52,6 +52,20 @@ php artisan key:generate
 # Start der Datenbank und phpMyAdmin (Docker)
 docker-compose up -d
 
-#Migration und Seeding bei Erstanwendung
+# Migration und Seeding bei Erstanwendung
 docker exec -it faq_app php artisan migrate:fresh --seed
+```
+
+### 🧪 Testing vorbereiten
+
+Um die Tests auszuführen, ist eine `.env.testing`-Datei mit einem gültigen `APP_KEY` notwendig:
+
+```bash
+cp .env.testing.example .env.testing
+
+# App Key generieren (im Container)
+docker exec -it faq_app php artisan key:generate --show
+
+# Test ausführen
+docker exec -it faq_app php artisan test
 ```

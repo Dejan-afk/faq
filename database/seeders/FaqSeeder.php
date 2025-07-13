@@ -16,14 +16,14 @@ class FaqSeeder extends Seeder
         $jsonPath = database_path('seeders/data/fragen-antworten.json');
 
         if (!file_exists($jsonPath)) {
-            $this->command->error("❌ JSON-Datei nicht gefunden: {$jsonPath}");
+            $this->command->error("JSON-Datei nicht gefunden: {$jsonPath}");
             return;
         }
 
         $faqData = json_decode(file_get_contents($jsonPath), true);
 
         if (!$faqData || !is_array($faqData)) {
-            $this->command->error("❌ Fehler beim Parsen der JSON-Datei.");
+            $this->command->error("Fehler beim Parsen der JSON-Datei.");
             return;
         }
 
@@ -39,7 +39,7 @@ class FaqSeeder extends Seeder
             $category = Category::where('name', $item['category'])->first();
 
             if (!$category) {
-                $this->command->warn("⚠️ Kategorie '{$item['category']}' nicht gefunden – Frage wird übersprungen.");
+                $this->command->warn("Kategorie '{$item['category']}' nicht gefunden. Frage wird übersprungen.");
                 continue;
             }
 
@@ -54,10 +54,10 @@ class FaqSeeder extends Seeder
                 ]
             );
 
-            $this->command->info("✅ FAQ '{$item['question']}' hinzugefügt.");
+            $this->command->info("FAQ '{$item['question']}' hinzugefügt.");
 
         }
 
-        $this->command->info("✅ FAQ-Seeding abgeschlossen.");
+        $this->command->info("FAQ-Seeding abgeschlossen.");
     }
 }
