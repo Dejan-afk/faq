@@ -14,12 +14,30 @@ class FaqController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+
+        $faqs = Faq::query()
+            ->with(['category', 'tags'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('question', 'like', "%{$search}%")
+                    ->orWhere('answer', 'like', "%{$search}%")
+                    ->orWhereHas('tags', function ($tagQuery) use ($search) {
+                        $tagQuery->where('name', 'like', "%{$search}%");
+                    });
+                });
+            })
+            ->get();
+
         return Inertia::render('Admin/Faq', [
-            'faqs' => Faq::with(['category', 'tags'])->get(),
-            'tags' => Tag::all(), 
-            'categories' => Category::all(), 
+            'faqs' => $faqs,
+            'tags' => Tag::all(),
+            'categories' => Category::all(),
+            'filters' => [
+                'search' => $search,
+            ],
         ]);
     }
 
