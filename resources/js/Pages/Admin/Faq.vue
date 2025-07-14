@@ -1,8 +1,20 @@
 <template>
   <div>
-    <h1>FAQ-Verwaltung</h1>
-
-    <button @click="create">Neue FAQ erstellen</button>
+    <!-- TODO: component -->
+    <div class="search-and-create">
+      <div class="page-context"> 
+        <h2>Fragen verwalten</h2>
+        <p>{{ faqs.length }} Fragen gefunden</p>
+      </div>
+      <div class="page-actions">
+          <Searchbar 
+            v-model="search"
+            @search="performSearch"
+            type="text"
+          />
+        <button @click="create">Neue FAQ erstellen</button>
+      </div>
+    </div>
 
     <Table
       :headers="[
@@ -50,6 +62,8 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import FaqForm from '@/Components/FaqForm.vue'
 import DeleteModal from '@/Components/DeleteModal.vue'
 import Table from '@/Components/Table.vue'
+import Searchbar from '@/Components/Searchbar.vue'
+import '../../../css/faq.css'
 
 defineOptions({ layout: AppLayout })
 defineProps({ 
@@ -68,7 +82,7 @@ const create = () => {
 }
 
 const edit = (faq) => {
-  editingFaq.value = { ...faq } // Kopie zur Sicherheit
+  editingFaq.value = { ...faq }
   showModal.value = true
 }
 
