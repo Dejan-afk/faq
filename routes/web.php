@@ -18,8 +18,8 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('faqs', FaqController::class);
-    Route::resource('tags', TagController::class);
+    Route::resource('faqs', FaqController::class)->except(['create', 'edit', 'show']);
+    Route::resource('tags', TagController::class)->except(['create', 'edit', 'show']);
 });
 
 require __DIR__.'/auth.php';
