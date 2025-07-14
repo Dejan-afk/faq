@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
@@ -31,7 +32,13 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->rules());
+
+        Tag::create($request->only('name'));
+
+        return redirect()
+            ->route('tags.index')
+            ->with('success', 'Tag erfolgreich erstellt.');
     }
 
     /**
@@ -55,7 +62,13 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate($this->rules($tag));
+
+        $tag->update($request->only('name'));
+
+        return redirect()
+            ->route('tags.index')
+            ->with('success', 'Tag erfolgreich aktualisiert.');
     }
 
     /**
@@ -63,6 +76,25 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()
+            ->route('tags.index')
+            ->with('success', 'Tag erfolgreich gelöscht.');
+    }
+
+    /**
+     * Validation rules for Tag.
+     */
+    private function rules(?Tag $tag = null): array
+    {
+        return [
+            'name' => [
+                'required',
+                'string',
+                'max:30',
+                Rule::unique('tags', 'name')->ignore($tag?->id),
+            ],
+        ];
     }
 }
