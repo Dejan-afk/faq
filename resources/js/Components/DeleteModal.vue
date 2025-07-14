@@ -1,8 +1,8 @@
 <template>
   <div v-if="show" class="modal-backdrop">
     <div class="modal">
-      <h2>Wirklich löschen?</h2>
-      <p>{{ faq.question }}</p>
+      <h2>Sind Sie sicher, dass Sie {{ item.question ? 'folgende Frage' : 'folgenden Tag' }} löschen wollen?</h2>
+      <p>{{ item.question ?? item.name }}</p>
 
       <div class="modal-actions">
         <button @click="close">Abbrechen</button>
@@ -18,12 +18,12 @@ import '../../css/deleteModal.css'
 
 const props = defineProps({
   show: Boolean,
-  faq: Object,
+  item: Object,
 })
 const emit = defineEmits(['close'])
 
 const confirmDelete = () => {
-  router.delete(route('faqs.destroy', props.faq.id), {
+  router.delete(route('faqs.destroy', props.item.id), {
     onSuccess: () => emit('close'),
   })
 }

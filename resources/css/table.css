@@ -1,0 +1,31 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ccc;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #f8f8f8;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.data-table button {
+  padding: 0.3rem 0.7rem;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
+}

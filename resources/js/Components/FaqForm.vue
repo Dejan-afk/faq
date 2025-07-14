@@ -14,9 +14,27 @@
           <textarea v-model="form.answer" required></textarea>
         </label>
 
+        <div class="dropdowns">
+          <DropdownMultiple
+            id="tags"
+            label="Tags"
+            :options="tags"
+            v-model="form.tags"
+          />
+
+          <Dropdown 
+            id="categories"
+            label="Kategorie"
+            :options="categories"
+            v-model="form.category"
+          />
+        </div>
+
         <div class="modal-actions">
           <button type="button" @click="close">Abbrechen</button>
-          <button type="submit">Speichern</button>
+          <button type="submit" :disabled="form.processing">
+            {{ form.processing ? 'Speichern...' : 'Speichern' }}
+          </button>
         </div>
       </form>
     </div>
@@ -24,24 +42,48 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import '../../css/faqForm.css'
+import Dropdown from './Generic/Dropdown.vue'
+import DropdownMultiple from './Generic/DropdownMultiple.vue'
 
 const props = defineProps({
   show: Boolean,
   faq: Object,
+  tags: Array,
+  categories: Array,
 })
 const emit = defineEmits(['close'])
 
 const form = useForm({
-  question: props.faq?.question || '',
-  answer: props.faq?.answer || '',
+  question: '',
+  answer: '',
+  tags: [],
+  category: null,
 })
+
+watch(
+  () => props.faq,
+  (faq) => {
+    if (faq) {
+      form.question = faq.question
+      form.answer = faq.answer
+      form.tags = faq.tags ? faq.tags.map(tag => tag.id) : []
+      form.category = faq.category ? faq.category.id : null
+    } else {
+      form.reset() // leere Felder beim Erstellen
+      form.clearErrors() // Fehler zurücksetzen
+    }
+  },
+  { immediate: true }
+)
 
 const submit = () => {
   props.faq
     ? form.put(route('faqs.update', props.faq.id), { onSuccess: () => emit('close') })
     : form.post(route('faqs.store'), { onSuccess: () => emit('close') })
 }
+
 const close = () => emit('close')
 </script>

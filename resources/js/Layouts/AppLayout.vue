@@ -4,12 +4,12 @@
       <div v-if="isAdmin">
         <!-- Admin-Navbar -->
         <Link href="/faqs">Admin: FAQs verwalten</Link>
-        <Link href="/logout" method="post">Logout</Link>
+        <Link href="/logout" method="post" as="button">Logout</Link>
       </div>
       <div v-else>
         <!-- Besucher-Navbar -->
         <Link href="/">Startseite</Link>
-        <Link href="/login">Admin-Login</Link>
+        <Link href="/login" as="button">Admin-Login</Link>
       </div>
     </nav>
 
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { usePage } from '@inertiajs/vue3'
+import { usePage, Link } from '@inertiajs/vue3'
 
 const page = usePage()
 const isAdmin = page.props.auth?.user?.role === 'admin'

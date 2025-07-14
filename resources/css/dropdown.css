@@ -1,0 +1,40 @@
+.dropdown-wrapper {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.4rem;
+}
+
+.select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.chip {
+  background: #f0f0f0;
+  border-radius: 9999px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.chip button {
+  margin-left: 0.4rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+}
