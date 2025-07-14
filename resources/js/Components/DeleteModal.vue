@@ -6,14 +6,16 @@
 
       <div class="modal-actions">
         <button @click="close">Abbrechen</button>
-        <button class="danger" @click="confirmDelete">Löschen</button>
+        <button :disabled="form.processing" @click="confirmDelete">
+          {{ form.processing ? 'Löschen...' : 'Löschen' }}
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { router } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import '../../css/deleteModal.css'
 
 const props = defineProps({
@@ -22,10 +24,14 @@ const props = defineProps({
 })
 const emit = defineEmits(['close'])
 
+const form = useForm({})
+
 const confirmDelete = () => {
-  router.delete(route('faqs.destroy', props.item.id), {
+  form.delete(route('faqs.destroy', props.item.id), {
+    preserveScroll: true,
     onSuccess: () => emit('close'),
   })
 }
+
 const close = () => emit('close')
 </script>

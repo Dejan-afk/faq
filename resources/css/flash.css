@@ -1,0 +1,53 @@
+.flash {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: var(--clr-white);
+  font-weight: 500;
+  z-index: 9999;
+  animation: fade-in-out 3s ease forwards;
+  min-width: 250px;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Variants */
+.flash.success {
+  background-color: var(--clr-brightgreen-200);
+  color: var(--clr-black);
+}
+
+.flash.error {
+  background-color: var(--clr-red-500);
+}
+
+.flash.info {
+  background-color: var(--clr-darkgreen-500);
+}
+
+.flash.warning {
+  background-color: var(--clr-gray-500);
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+}

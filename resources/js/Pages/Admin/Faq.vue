@@ -58,7 +58,6 @@ defineProps({
     categories: Array
 })
 
-// MODAL-Zustände
 const showModal = ref(false)
 const showDeleteModal = ref(false)
 const editingFaq = ref(null)
