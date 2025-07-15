@@ -55,8 +55,7 @@ const performSearch = () => {
   border: none;
   cursor: pointer;
 }
-
 .search-group button:hover {
-  background-color: #0056b3;
+  background: var(--clr-darkgreen-800);
 }
 </style>

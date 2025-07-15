@@ -1,6 +1,13 @@
 @import './colors.css';
 @import './flash.css';
 
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
 .footer-content {
   text-align: center;
   padding: 1rem;
@@ -37,4 +44,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+.page-actions button:hover {
+  background: var(--clr-darkgreen-800);
 }

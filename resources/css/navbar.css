@@ -1,0 +1,141 @@
+/* =========================================================
+   DEKRA NAVBAR – responsive, pure CSS
+   ====================================================== */
+@import "colors.css";
+
+.dekra-navbar {
+  --height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 4rem;
+  min-height: var(--height);
+  background: var(--clr-brand-primary);
+  opacity: 0.90;
+  color: var(--clr-white);
+  position: relative;
+  z-index: 1000;
+}
+
+/* ---------- Brand -------------------------------------------------- */
+.dekra-navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+}
+
+.icon-logo {
+  width: 100%;
+  fill: var(--clr-brand-secondary);
+}
+
+/* ---------- Mobile‑Toggle (Checkbox‑Hack) ------------------------- */
+.nav-toggle {
+  display: none;               /* bleibt unsichtbar */
+}
+
+.hamburger {
+  display: none;               /* nur auf kleineren Screens sichtbar */
+  flex-direction: column;
+  justify-content: center;
+  gap: .3rem;
+  cursor: pointer;
+  padding: .5rem;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--clr-white);
+  transition: transform .3s ease;
+}
+
+/* Burger zu X animieren */
+.nav-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.nav-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-4px) rotate(-45deg); }
+
+/* ---------- Navigation -------------------------------------------- */
+.dekra-navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--clr-white);
+  transition: color .2s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--clr-brand-secondary);
+}
+
+/* Login‑Button */
+.btn-login {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--clr-brightgreen-200);
+  color: var(--clr-darkgreen-800);
+  padding: .45rem 1rem;
+  border-radius: .25rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.btn-login:hover,
+.btn-login:focus-visible {
+  background: var(--clr-brightgreen-100);
+}
+
+.icon-login {
+  width: 16px;
+  height: 16px;
+  fill: black;
+}
+
+/* ---------- Breakpoints ------------------------------------------- */
+@media (max-width: 768px) {
+  /* Burger anzeigen */
+  .hamburger { display: flex; }
+
+  /* Menü ausblenden, wenn Checkbox nicht gecheckt */
+  .dekra-navbar nav {
+    position: absolute;
+    inset: var(--height) 0 auto;
+    background: var(--clr-darkgreen-600);
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+    transform-origin: top center;
+    transform: scaleY(0);
+    transition: transform .25s ease;
+  }
+
+  /* aufklappen wenn gecheckt */
+  .nav-toggle:checked ~ nav { transform: scaleY(1); }
+
+  /* Links & Button untereinander */
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

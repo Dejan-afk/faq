@@ -1,17 +1,6 @@
 <template>
   <div>
-    <nav>
-      <div v-if="isAdmin">
-        <!-- Admin-Navbar -->
-        <Link href="/faqs">Admin: FAQs verwalten</Link>
-        <Link href="/logout" method="post" as="button">Logout</Link>
-      </div>
-      <div v-else>
-        <!-- Besucher-Navbar -->
-        <Link href="/">Startseite</Link>
-        <Link href="/login" as="button">Admin-Login</Link>
-      </div>
-    </nav>
+    <Navbar />
 
     <main>
       <div v-if="flashMessage?.success" class="flash success">
@@ -36,6 +25,7 @@
 import { ref, watch } from 'vue'
 import { usePage, Link } from '@inertiajs/vue3'
 import '../../css/app.css'
+import Navbar from '@/Components/Navbar.vue'
 
 const page = usePage()
 const flashMessage = ref('')
