@@ -32,7 +32,6 @@ defineProps({
   headers: {
     type: Array,
     required: true,
-    // z.B. [{ key: 'question', label: 'Frage' }, { key: 'category', label: 'Kategorie' }]
   },
   items: {
     type: Array,

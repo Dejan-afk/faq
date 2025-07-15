@@ -6,11 +6,15 @@ use Inertia\Inertia;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\TagController;
+use App\Models\Category;
 
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'faqs' => Faq::all(),
+        'categories' => Category::all(),
+        'title' => 'Häufig gestellte Fragen',
+        'description' => 'Willkommen in unserem Hilfsbereich! Hier finden Sie eine Sammlung der häufigsten Fragen und Antworten zu unseren Angeboten und Services. Finden Sie schnell und unkompliziert die Informationen, die Sie suchen.'
     ]);
 })->name('home');
 

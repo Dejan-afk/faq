@@ -1,13 +1,12 @@
 @import './colors.css';
 @import './flash.css';
 
-:root {
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Arial', sans-serif;
 }
-
 .footer-content {
   text-align: center;
   padding: 1rem;

@@ -1,5 +1,5 @@
 <template>
-  <header class="dekra-navbar">
+  <div class="dekra-navbar">
     <!-- Logo & Hamburger‑Schalter -->
     <a href="/" class="brand">
       <!-- Logo -->
@@ -24,10 +24,10 @@
       <!-- Login -->
       <a href="/login" class="btn-login">
         <SvgIcon src="icon-arrow-circle-right.svg" wrapper-class="icon-login" />
-        Login
+        <span>Login</span>
       </a>
     </nav>
-  </header>
+  </div>
 </template>
 
 <script setup>

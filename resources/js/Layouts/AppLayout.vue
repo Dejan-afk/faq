@@ -1,7 +1,18 @@
 <template>
-  <div>
-    <Navbar />
-
+  <div class="app-layout">
+    <header>
+      <Hero heroImage="">
+        <template #hero>
+          <h1>{{ page.props.title }}</h1>
+          <p>{{ page.props.description }}</p>
+          <div v-if="isLandingPage" class="hero-search">
+            <input v-model="query" placeholder="Suche nach etwas …" />
+            <button @click="search">Suchen</button>
+          </div>
+        </template>
+      </Hero>
+      <Navbar/>
+    </header>
     <main>
       <div v-if="flashMessage?.success" class="flash success">
         {{ flashMessage.success }}
@@ -26,10 +37,12 @@ import { ref, watch } from 'vue'
 import { usePage, Link } from '@inertiajs/vue3'
 import '../../css/app.css'
 import Navbar from '@/Components/Navbar.vue'
+import Hero from './Hero.vue'
 
 const page = usePage()
 const flashMessage = ref('')
 const isAdmin = page.props.auth?.user?.role === 'admin'
+const isLandingPage = page.url === '/'
 
 watch(() => page.props.flash, (newFlashMessage) => {
   if (newFlashMessage?.success || newFlashMessage?.error) {

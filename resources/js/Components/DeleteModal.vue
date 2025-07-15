@@ -16,7 +16,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
-import '../../css/deleteModal.css'
+import '../../css/delete-modal.css'
 
 const props = defineProps({
   show: Boolean,

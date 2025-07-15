@@ -7,7 +7,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
-import '../../css/tagForm.css'
+import '../../css/tag-form.css'
 
 const props = defineProps({ tag: Object })
 

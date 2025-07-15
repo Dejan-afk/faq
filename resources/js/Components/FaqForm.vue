@@ -44,7 +44,7 @@
 <script setup>
 import { watch } from 'vue'
 import { useForm } from '@inertiajs/vue3'
-import '../../css/faqForm.css'
+import '../../css/faq-form.css'
 import Dropdown from './Generic/Dropdown.vue'
 import DropdownMultiple from './Generic/DropdownMultiple.vue'
 
