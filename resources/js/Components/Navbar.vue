@@ -3,7 +3,7 @@
     <!-- Logo & Hamburger‑Schalter -->
     <a href="/" class="brand">
       <!-- Logo -->
-      <img class="icon-logo" src="/logo/dekra-logo-white.svg" alt="DEKRA" />
+      <SvgIcon src="dekra-logo-white.svg" wrapper-class="icon-logo" />
     </a>
 
     <!-- Hamburger -->
@@ -23,7 +23,7 @@
 
       <!-- Login -->
       <a href="/login" class="btn-login">
-        <img class="icon-login" src="/icons/icon-arrow-circle-right.svg" alt="Login" />
+        <SvgIcon src="icon-arrow-circle-right.svg" wrapper-class="icon-login" />
         Login
       </a>
     </nav>
@@ -32,6 +32,7 @@
 
 <script setup>
 import { usePage } from '@inertiajs/vue3'
+import SvgIcon from './SvgIcon.vue'
 import '../../css/navbar.css'
 const page = usePage()
 const isAdmin = page.props.auth?.user?.role === 'admin'
