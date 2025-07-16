@@ -59,8 +59,8 @@
 <script setup>
 import { ref } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
-import FaqForm from '@/Components/FaqForm.vue'
-import DeleteModal from '@/Components/DeleteModal.vue'
+import FaqForm from '@/Components/Admin/Faq/FaqForm.vue'
+import DeleteModal from '@/Components/Admin/DeleteModal.vue'
 import Table from '@/Components/Table.vue'
 import Searchbar from '@/Components/Searchbar.vue'
 import '../../../css/faq.css'

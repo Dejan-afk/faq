@@ -6,8 +6,11 @@
     @select="selectedCategory = $event"
   />
 
-  <!-- Accordion -->
-  <FaqAccordion :items="filtered" />
+  <!-- Accordion  TODO: error-handling -->
+  <FaqAccordion 
+    :items="filtered" 
+    :category="categories.find(c => c.id === selectedCategory)?.name || 'All Categories'" 
+  />
 
   <!-- Contact -->
   <section class="contact">
@@ -15,10 +18,13 @@
       <h2>Du findest keine Antwort auf deine Frage?</h2>
       <p>Nimm einfach Kontakt zu uns auf und wir versuchen so schnell wie möglich dir weiter zu helfen!</p>
     </div>
-    <button class="btn-contact" style="display: inline-block;"> <!-- Todo: Dark Button Component -->
-      <SvgIcon src="icon-email.svg" wrapper-class="icon-contact" />
-      <span>Kontakt</span>
-    </button>
+    <AppButton
+      label="Kontakt aufnehmen"
+      variant="secondary"
+      icon="icon-email.svg"
+      as="button"
+      @click="alertMail"
+    />
   </section>
 </template>
 
@@ -28,6 +34,7 @@ import CategoryTabs from '@/Components/CategoryTabs.vue'
 import FaqAccordion from '@/Components/FaqAccordion.vue';
 import { ref, computed } from 'vue'
 import '../../css/welcome.css'
+import AppButton from '@/Components/Input/AppButton.vue';
 
 defineOptions({ layout: AppLayout })
 
@@ -44,4 +51,6 @@ const filtered = computed(() =>
     ? true
     : f.category_id === selectedCategory.value)
 )
+
+const alertMail = () => alert('Kontaktformular wird bald verfügbar sein!')
 </script>

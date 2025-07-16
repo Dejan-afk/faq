@@ -1,20 +1,23 @@
 @import "colors.css";
 
+.navbar-wrapper {
+  width: 100%;
+  background: var(--clr-brand-primary);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
 .dekra-navbar {
   --height: 5vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 5rem;
   min-height: var(--height);
-  background: var(--clr-brand-primary);
+  background: transparent;
   opacity: 0.90;
   color: var(--clr-white);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
 }
 
 /* ---------- Brand -------------------------------------------------- */
@@ -85,41 +88,6 @@
 .nav-links a:hover,
 .nav-links a:focus-visible {
   color: var(--clr-brand-secondary);
-}
-
-/* Login‑Button */
-.btn-login {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: var(--clr-brightgreen-200);
-  color: var(--clr-darkgreen-800);
-  padding: 0.55rem 1.2rem;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s;
-  vertical-align: middle;
-  line-height: 1.2;
-}
-
-.btn-login:hover,
-.btn-login:focus-visible {
-  background: var(--clr-brightgreen-100);
-}
-
-.icon-login {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.icon-login svg {
-  width: 1rem;
-  height: 1rem;
-  display: block;
-}
-.icon-login svg path {
-  fill: var(--clr-darkgreen-800) !important;
 }
 
 /* ---------- Breakpoints ------------------------------------------- */

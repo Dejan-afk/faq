@@ -1,19 +1,23 @@
 <template>
-  <div class="app-layout">
-    <header>
-      <Hero heroImage="">
-        <template #hero>
-          <h1>{{ page.props.title }}</h1>
-          <p>{{ page.props.description }}</p>
-          <div v-if="isLandingPage" class="hero-search">
-            <input v-model="query" placeholder="Suche nach etwas …" />
-            <button @click="search">Suchen</button>
-          </div>
-        </template>
-      </Hero>
+  <div>
+    <header class="app-header">
       <Navbar/>
     </header>
-    <main>
+
+    <section class="app-hero">
+        <Hero heroImage="">
+          <template #hero>
+            <h1>{{ page.props.title }}</h1>
+            <p>{{ page.props.description }}</p>
+            <div v-if="isLandingPage" class="hero-search">
+              <input v-model="query" placeholder="Suche nach etwas …" />
+              <button @click="search">Suchen</button>
+            </div>
+          </template>
+        </Hero>
+    </section>
+
+    <main class="container page-content">
       <div v-if="flashMessage?.success" class="flash success">
         {{ flashMessage.success }}
       </div>
@@ -24,10 +28,8 @@
       <slot />
     </main>
 
-    <footer>
-      <div class="footer-content">
+    <footer class="container footer-content">
         &copy; 2025 | DEKRA Neo GmbH
-      </div>
     </footer>
   </div>
 </template>
@@ -41,7 +43,7 @@ import Hero from './Hero.vue'
 
 const page = usePage()
 const flashMessage = ref('')
-const isAdmin = page.props.auth?.user?.role === 'admin'
+const query = ref('')
 const isLandingPage = page.url === '/'
 
 watch(() => page.props.flash, (newFlashMessage) => {
