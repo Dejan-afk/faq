@@ -9,7 +9,7 @@
   <!-- Accordion  TODO: error-handling -->
   <FaqAccordion 
     :items="filtered" 
-    :category="categories.find(c => c.id === selectedCategory)?.name || 'All Categories'" 
+    :category="formatCategoryName(selectedCategory)"
   />
 
   <!-- Contact -->
@@ -52,5 +52,9 @@ const filtered = computed(() =>
     : f.category_id === selectedCategory.value)
 )
 
+const formatCategoryName = (id) => {
+  const name = props.categories.find(c => c.id === id)?.name;
+  return name === 'Services' ? 'Service' : name || 'All Categories'
+}
 const alertMail = () => alert('Kontaktformular wird bald verfügbar sein!')
 </script>

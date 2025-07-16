@@ -1,0 +1,122 @@
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+/* Header */
+.faq-accordion-header h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--clr-darkgreen-700);
+  letter-spacing: 0.02rem;
+}
+
+.faq-accordion-header h3 span {
+  font-weight: 700;
+}
+
+.faq-item {
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+/* Standard (geschlossen) */
+.faq-item {
+  background: var(--clr-gray-50);
+  border: 1px solid var(--clr-gray-100);
+}
+
+/* Offen: Hintergrund komplett grün */
+.faq-item.open {
+  background: var(--clr-brand-primary);
+  border-color: var(--clr-brand-primary);
+}
+
+/* Frage-Zeile */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.9rem 1.2rem;
+  background: inherit; /* übernimmt grün bei .open */
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--clr-darkgreen-500);
+}
+.faq-item.open .faq-question h3 {
+  color: var(--clr-white);
+}
+
+/* Icon-Wrapper */
+.faq-toggle-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clr-darkgreen-800);
+  border-radius: 50%;
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  transition: all 0.3s ease;
+}
+
+/* wenn offen → grün */
+.faq-item.open .faq-toggle-circle {
+  background: var(--clr-brightgreen-200);
+}
+
+/* Icon Farbe */
+.faq-toggle-icon svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  transition: transform 0.3s ease;
+  transform: rotate(180deg);
+  vertical-align: middle;
+  line-height: 0;
+}
+.faq-toggle-icon svg path {
+  fill: var(--clr-white);
+}
+
+/* Drehung */
+.faq-item.open .faq-toggle-icon svg {
+  transform: none;
+}
+/* Icon Farbe beim Drehen */
+.faq-item.open .faq-toggle-icon svg path {
+  fill: var(--clr-darkgreen-800);
+}
+
+/* Antwortbereich */
+.faq-answer {
+  padding: 0.8rem 1.2rem 1.2rem;
+  color: var(--clr-white);
+  background: inherit; /* übernimmt grün */
+  line-height: 1.45;
+}
+
+/* Transition‑Effekt */
+.accordion-enter-from,
+.accordion-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion-enter-to,
+.accordion-leave-from {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.accordion-enter-active,
+.accordion-leave-active {
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}
