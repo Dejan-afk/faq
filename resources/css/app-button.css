@@ -1,0 +1,52 @@
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.2rem;
+  font-weight: 500;
+  font-size: small;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  line-height: 1.2;
+  vertical-align: middle;
+  transition: background 0.2s;
+}
+
+/* Variants */
+.app-button--primary {
+  background-color: var(--clr-brightgreen-200);
+  color: var(--clr-darkgreen-800);
+}
+.app-button--primary:hover,
+.app-button--primary:focus-visible {
+  background-color: var(--clr-brightgreen-100);
+}
+
+.app-button--secondary {
+  background-color: var(--clr-darkgreen-700);
+  color: var(--clr-brightgreen-200);
+}
+.app-button--secondary:hover,
+.app-button--secondary:focus-visible {
+  background-color: var(--clr-darkgreen-800);
+}
+
+/* Icon */
+.app-button-icon--primary,
+.app-button-icon--secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-button-icon--primary svg,
+.app-button-icon--secondary svg {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+.app-button-icon--primary svg path {
+  fill: var(--clr-darkgreen-800) !important;
+}
+.app-button-icon--secondary svg path {
+  fill: var(--clr-brightgreen-200) !important;
+}

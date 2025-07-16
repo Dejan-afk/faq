@@ -1,5 +1,8 @@
 <template>
   <div class="faq-accordion">
+    <div class="faq-accordion-header">
+      <p>Fragen aus dem Bereich {{ category }}</p>
+    </div>
     <article
       v-for="faq in items"
       :key="faq.id"
@@ -32,6 +35,7 @@ import SvgIcon from '@/Components/SvgIcon.vue'
 
 const props = defineProps({
   items: { type: Array, required: true },
+  category: { type: String, required: true },
 })
 
 const openId = ref(null)

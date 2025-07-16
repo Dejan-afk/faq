@@ -6,7 +6,7 @@
       :class="['tab', { active: category.id === selectedId }]"
       @click="$emit('select', category.id)"
     >
-      <SvgIcon :src="category.icon" wrapper-class="tab-icon" />
+      <SvgIcon :src="'icon-categorie-' + category.name.toLowerCase() + '.svg'" wrapper-class="tab-icon" />
       <span class="tab-label">{{ category.name }}</span>
     </button>
   </div>
