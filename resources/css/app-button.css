@@ -9,7 +9,20 @@
   border-radius: 0.25rem;
   line-height: 1.2;
   vertical-align: middle;
-  transition: background 0.2s;
+  white-space: normal;
+  flex-wrap: wrap;
+  max-width: 100%; 
+  transition: background 0.2s, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.app-button:hover,
+.app-button:focus-visible {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.app-button span {
+  word-break: break-word;
 }
 
 /* Variants */
@@ -19,12 +32,12 @@
 }
 .app-button--primary:hover,
 .app-button--primary:focus-visible {
-  background-color: var(--clr-brightgreen-100);
+  background-color: var(--clr-brightgreen-300);
 }
 
 .app-button--secondary {
   background-color: var(--clr-darkgreen-700);
-  color: var(--clr-brightgreen-200);
+  color: var(--clr-brightgreen-100);
 }
 .app-button--secondary:hover,
 .app-button--secondary:focus-visible {
@@ -48,5 +61,5 @@
   fill: var(--clr-darkgreen-800) !important;
 }
 .app-button-icon--secondary svg path {
-  fill: var(--clr-brightgreen-200) !important;
+  fill: var(--clr-brightgreen-100) !important;
 }

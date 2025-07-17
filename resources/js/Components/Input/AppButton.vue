@@ -3,7 +3,7 @@
     :is="as"
     :href="href"
     :type="as === 'button' ? type : undefined"
-    :class="[baseClass, variantClass]"
+    :class="[baseClass, variantClass, props.class]"
     @click="onClick"
   >
     <SvgIcon
