@@ -16,11 +16,11 @@
 /* Basis-Tabs */
 .tab {
   position: relative;
-  flex: 1 1 220px;              /* gute Startbreite */
+  flex: 1 1 200px;
   min-height: 110px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;     /* Text linksbündig */
+  align-items: flex-start;
   justify-content: center;
   border: none;
   background: white;
@@ -109,8 +109,10 @@
   }
 
   .tab-label {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-right: 0;
+    padding-left: 0;
+    padding-right: 1rem;
   }
 
   .tab-icon-wrapper,

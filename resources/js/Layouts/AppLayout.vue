@@ -5,7 +5,7 @@
     </header>
 
     <section class="app-hero">
-        <Hero heroImage="">
+        <Hero>
           <template #hero>
             <h1>{{ page.props.title }}</h1>
             <p>{{ page.props.description }}</p>
