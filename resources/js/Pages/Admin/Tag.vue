@@ -23,8 +23,9 @@
     </TableComponent>
 </template>
 
-<script>
+<script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
+import { ref } from 'vue'
 defineOptions({ layout: AppLayout })
 defineProps({
     tags: Array,

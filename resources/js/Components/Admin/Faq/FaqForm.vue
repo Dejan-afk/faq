@@ -44,9 +44,9 @@
 <script setup>
 import { watch } from 'vue'
 import { useForm } from '@inertiajs/vue3'
-import '../../css/faq-form.css'
-import Dropdown from './Generic/Dropdown.vue'
-import DropdownMultiple from './Generic/DropdownMultiple.vue'
+import '../../../../css/faq-form.css'
+import Dropdown from '../../Input/Dropdown.vue'
+import DropdownMultiple from '../../Input/DropdownMultiple.vue'
 
 const props = defineProps({
   show: Boolean,

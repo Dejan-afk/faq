@@ -19,15 +19,38 @@
 
       <!-- Navigation -->
       <nav>
-        <ul class="nav-links">
-          <li><a href="/faq">FAQ</a></li>
-          <!-- Tags & Fragen nur für Admin -->
-          <li v-if="isAdmin"><a href="/tags">Tags</a></li>
-          <li v-if="isAdmin"><a href="/questions">Fragen</a></li>
-        </ul>
+              <ul class="nav-links">
+        <li>
+          <a
+            href="/"
+            :class="{ active: currentUrl === '/' }"
+          >FAQ</a>
+        </li>
+        <li v-if="isAdmin">
+          <a
+            href="/tags"
+            :class="{ active: currentUrl.startsWith('/tags') }"
+          >Tags</a>
+        </li>
+        <li v-if="isAdmin">
+          <a
+            href="/faqs"
+            :class="{ active: currentUrl.startsWith('/faqs') }"
+          >Fragen</a>
+        </li>
+      </ul>
 
         <!-- Login -->
         <AppButton
+          v-if="isLoggedIn"
+          label="Logout"
+          icon="icon-arrow-circle-left.svg"
+          @click="logout"
+          variant="primary"
+        />
+        <!-- Logout -->
+        <AppButton
+          v-else
           label="Login"
           icon="icon-arrow-circle-right.svg"
           href="/login"
@@ -45,8 +68,15 @@ import { usePage } from '@inertiajs/vue3'
 import SvgIcon from './SvgIcon.vue'
 import '../../css/navbar.css'
 import AppButton from './Input/AppButton.vue'
+import { router } from '@inertiajs/vue3'
+
+const logout = () => {
+  router.post('/logout')
+}
 
 const navOpen = ref(false)
 const page = usePage()
+const currentUrl = page.url
 const isAdmin = page.props.auth?.user?.role === 'admin'
+const isLoggedIn = !!page.props.auth?.user
 </script>
