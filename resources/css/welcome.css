@@ -1,0 +1,6 @@
+.tabs-section {
+  margin-top: -3rem; /* Schweben in den Hero hinein */
+  z-index: 5;
+  position: relative;
+  margin-bottom: 3.5rem;
+}

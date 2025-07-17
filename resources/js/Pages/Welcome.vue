@@ -1,5 +1,5 @@
 <template>
-  <section aria-label="Themenbereiche">
+  <section class="tabs-section" aria-label="Themenbereiche">
     <CategoryTabs
       :categories="categories"
       :selected-id="selectedCategory"
