@@ -8,9 +8,13 @@
       </a>
 
       <!-- Hamburger -->
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-      <label for="nav-toggle" class="hamburger" aria-label="Menü öffnen/schließen">
-        <span></span><span></span><span></span>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" v-model="navOpen" />
+      <label for="nav-toggle" class="hamburger-icon" :class="{ open: navOpen }" aria-label="Menü öffnen/schließen">
+        <SvgIcon
+          src="icon-bars.svg"
+          wrapper-class="icon-bars"
+          :class="{ open: navOpen }"
+        />
       </label>
 
       <!-- Navigation -->
@@ -36,10 +40,13 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { usePage } from '@inertiajs/vue3'
 import SvgIcon from './SvgIcon.vue'
 import '../../css/navbar.css'
 import AppButton from './Input/AppButton.vue'
+
+const navOpen = ref(false)
 const page = usePage()
 const isAdmin = page.props.auth?.user?.role === 'admin'
 </script>
