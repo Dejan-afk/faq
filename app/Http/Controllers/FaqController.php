@@ -35,6 +35,8 @@ class FaqController extends Controller
             'faqs' => $faqs,
             'tags' => Tag::all(),
             'categories' => Category::all(),
+            'title' => 'FAQ Verwaltung',
+            'description' => 'Willkommen im Bereich für die Verwaltung Ihrer Fragen. Hier können Sie neue Fragen für Quizzes, Tests oder FAQs erstellen, bestehende Fragen anpassen und Ihre Fragensammlungen effizient organisieren.',
             'filters' => [
                 'search' => $search,
             ],
