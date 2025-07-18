@@ -16,7 +16,7 @@ class TagController extends Controller
     {
         return Inertia::render('Admin/Tag', [
             'tags' => Tag::all(),
-            'title' => 'Häufig gestellte Fragen',
+            'title' => 'Tag Verwaltung',
             'description' => 'Hier verwalten Sie die Schlagwörter (Tags) für Ihre Inhalte. Erstellen, bearbeiten und organisieren Sie Tags, um die Auffindbarkeit und Kategorisierung Ihrer digitalen Trainings zu optimieren.'
         ]);
     }
