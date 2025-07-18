@@ -5,32 +5,28 @@
 
     <button @click="create">Neuen Tag erstellen</button>
 
-    <TableComponent
-        :headers="[
-            { key: 'name', label: 'Tag-Name' },
-            { key: 'created_at', label: 'Erstellt am' },
-        ]"
-        :items="tags"
-        >
-        <template #cell-created_at="{ value }">
-            {{ formatDate(value) }}
-        </template>
-
-        <template #actions="{ item }">
-            <button @click="edit(item)">Bearbeiten</button>
-            <button @click="destroy(item)">Löschen</button>
-        </template>
-    </TableComponent>
+    <Table :columns="columns" :items="tags">
+      <template #actions="{ item }">
+        <SvgIcon name="edit" @click="edit(item)" class="action-btn" src="icon-edit.svg" />
+        <SvgIcon name="delete" @click="destroy(item)" class="action-btn" src="icon-delete.svg" />
+      </template>
+    </Table>
 </template>
 
 <script setup>
+import SvgIcon from '@/Components/SvgIcon.vue'
+import Table from '@/Components/Table.vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { ref } from 'vue'
+import '../../../css/tag.css'
 defineOptions({ layout: AppLayout })
 defineProps({
     tags: Array,
 })
-// MODAL-Zustände
+const columns = [
+  { key: 'name', label: 'Name' },
+  { key: 'created_at', label: 'Erstellt am' },
+]
 const showModal = ref(false)
 const editingTag = ref(null)
 
@@ -47,14 +43,6 @@ const edit = (tag) => {
 const closeModal = () => {
   showModal.value = false
   editingTag.value = null
-}
-
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  })
 }
 </script>
 

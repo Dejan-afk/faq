@@ -16,26 +16,13 @@
       </div>
     </div>
 
-    <Table
-      :headers="[
-        { key: 'question', label: 'Frage' },
-        { key: 'category', label: 'Kategorie' },
-        { key: 'created_at', label: 'Erstellt am' },
-      ]"
-      :items="faqs"
-    >
-        <template #cell-category="{ item }">
-            {{ item.category?.name ?? '-' }}
-        </template>
-
-        <template #cell-created_at="{ value }">
-            {{ formatDate(value) }}
-        </template>
-
-        <template #actions="{ item }">
-            <button @click="edit(item)">Bearbeiten</button>
-            <button @click="destroy(item)">Löschen</button>
-        </template>
+    <Table :columns="columns" :items="faqs">
+      <template #actions="{ item }">
+        <SvgIcon name="edit" @click="edit(item)" class="action-btn" src="icon-edit.svg" />
+        <SvgIcon name="delete" @click="destroy(item)" class="action-btn" src="icon-delete.svg" />
+        <SvgIcon name="sort-up" @click="sort(item, 'up')" class="action-btn" src="icon-sort-up.svg" />
+        <SvgIcon name="sort-down" @click="sort(item, 'down')" class="action-btn" src="icon-sort-down.svg" />
+      </template>
     </Table>
 
     <!-- MODAL TODO: change fallback elegantly -->
@@ -64,6 +51,7 @@ import DeleteModal from '@/Components/Admin/DeleteModal.vue'
 import Table from '@/Components/Table.vue'
 import Searchbar from '@/Components/Searchbar.vue'
 import '../../../css/faq.css'
+import SvgIcon from '@/Components/SvgIcon.vue'
 
 defineOptions({ layout: AppLayout })
 defineProps({ 
@@ -71,7 +59,11 @@ defineProps({
     tags: Array,
     categories: Array
 })
-
+const columns = [
+  { key: 'question', label: 'Frage' },
+  { key: 'category', label: 'Kategorie' },
+  { key: 'created_at', label: 'Erstellt am' },
+]
 const showModal = ref(false)
 const showDeleteModal = ref(false)
 const editingFaq = ref(null)
@@ -95,13 +87,5 @@ const closeModal = () => {
   showModal.value = false
   showDeleteModal.value = false
   editingFaq.value = null
-}
-
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  })
 }
 </script>
