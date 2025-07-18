@@ -1,21 +1,15 @@
 <template>
   <div>
-    <!-- TODO: component -->
-    <div class="search-and-create">
-      <div class="page-context"> 
-        <h2>Fragen verwalten</h2>
-        <p>{{ faqs.length }} Fragen gefunden</p>
-      </div>
-      <div class="page-actions">
-          <Searchbar 
-            v-model="search"
-            @search="performSearch"
-            type="text"
-          />
-        <button @click="create">Neue FAQ erstellen</button>
-      </div>
-    </div>
-
+    <!-- Header -->
+    <PageHeader
+      title="Fragen Verwaltung"
+      :subtitle="`${faqs.length} Fragen insgesamt`"
+      search-placeholder="Fragen"
+      action-label="Neue Frage erstellen"
+      action-icon="icon-close.svg"
+      @action="create"
+    />
+    <!-- Table -->
     <Table :columns="columns" :items="faqs">
       <template #actions="{ item }">
         <SvgIcon name="edit" @click="edit(item)" class="action-btn" src="icon-edit.svg" />
@@ -49,7 +43,7 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import FaqForm from '@/Components/Admin/Faq/FaqForm.vue'
 import DeleteModal from '@/Components/Admin/DeleteModal.vue'
 import Table from '@/Components/Table.vue'
-import Searchbar from '@/Components/Searchbar.vue'
+import PageHeader from '@/Components/Admin/PageHeader.vue'
 import '../../../css/faq.css'
 import SvgIcon from '@/Components/SvgIcon.vue'
 

@@ -1,18 +1,23 @@
 <template>
-    <form class="search-group" @submit.prevent="search">
-        <input
-            v-model="search"
-            type="text"
-            :placeholder="`Suche nach ${placeholder}`"
-            @keyup.enter="performSearch"
-        />
-        <button @click="performSearch">Suchen</button>
-    </form>
+  <form class="search-group" @submit.prevent="performSearch">
+    <input
+      v-model="search"
+      type="text"
+      :placeholder="`Suche nach ${placeholder}`"
+    />
+    <AppButton
+      label="Suchen"
+      icon="icon-search.svg"
+      variant="secondary"
+      type="submit"
+    />
+  </form>
 </template>
 
 <script setup>
 import { ref, defineProps } from 'vue'
 import { router } from '@inertiajs/vue3'
+import AppButton from './Input/AppButton.vue'
 
 const { placeholder = 'Fragen' } = defineProps({
   placeholder: {
@@ -35,27 +40,24 @@ const performSearch = () => {
 .search-group {
   display: flex;
   border: 1px solid var(--clr-gray-200);
-  border-radius: 6px;
+  border-radius: 0.4rem;
   overflow: hidden;
-  background: var(--clr-gray-50);
+  background: white;
+  flex: 1;
+  align-items: stretch;
 }
 
 .search-group input {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   border: none;
   background: transparent;
   outline: none;
-  min-width: 220px;
+  font-size: 0.95rem;
+  flex: 1;
 }
 
-.search-group button {
-  background: var(--clr-darkgreen-700);
-  color: var(--clr-brightgreen-100);
-  padding: 0 1rem;
-  border: none;
-  cursor: pointer;
-}
-.search-group button:hover {
-  background: var(--clr-darkgreen-800);
+.search-group :deep(.app-button--secondary) {
+  border-radius: 0; /* entfernt doppelte Rundung rechts */
+  border-left: 1px solid var(--clr-gray-200); /* klare Trennung */
 }
 </style>

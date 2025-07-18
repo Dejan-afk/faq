@@ -1,10 +1,14 @@
 <template>
-    <div class="tag-admin">
-        <h1>Tag Administration</h1>
-    </div>
-
-    <button @click="create">Neuen Tag erstellen</button>
-
+    <!-- Header -->
+    <PageHeader
+      title="Tag Verwaltung"
+      :subtitle="`${tags.length} Tags insgesamt`"
+      search-placeholder="Tags"
+      action-label="Neuen Tag erstellen"
+      action-icon="icon-close.svg"
+      @action="create"
+    />
+    <!-- Table -->
     <Table :columns="columns" :items="tags">
       <template #actions="{ item }">
         <SvgIcon name="edit" @click="edit(item)" class="action-btn" src="icon-edit.svg" />
@@ -15,6 +19,7 @@
 
 <script setup>
 import SvgIcon from '@/Components/SvgIcon.vue'
+import PageHeader from '@/Components/Admin/PageHeader.vue'
 import Table from '@/Components/Table.vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { ref } from 'vue'
@@ -45,9 +50,3 @@ const closeModal = () => {
   editingTag.value = null
 }
 </script>
-
-<style scoped>
-.tag-admin {
-    padding: 1rem;
-}
-</style>

@@ -40,7 +40,7 @@
         </li>
       </ul>
 
-        <!-- Login -->
+        <!-- Logout -->
         <AppButton
           v-if="isLoggedIn"
           label="Logout"
@@ -48,7 +48,7 @@
           @click="logout"
           variant="primary"
         />
-        <!-- Logout -->
+        <!-- Login -->
         <AppButton
           v-else
           label="Login"
@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { usePage } from '@inertiajs/vue3'
 import SvgIcon from './SvgIcon.vue'
 import '../../css/navbar.css'
@@ -71,12 +71,15 @@ import AppButton from './Input/AppButton.vue'
 import { router } from '@inertiajs/vue3'
 
 const logout = () => {
-  router.post('/logout')
+  router.visit('/logout', {
+    method: 'post'
+  })
 }
 
 const navOpen = ref(false)
 const page = usePage()
-const currentUrl = page.url
-const isAdmin = page.props.auth?.user?.role === 'admin'
-const isLoggedIn = !!page.props.auth?.user
+
+const isLoggedIn = computed(() => !!page.props.auth?.user)
+const isAdmin = computed(() => page.props.auth?.user?.role === 'admin')
+const currentUrl = computed(() => page.url)
 </script>

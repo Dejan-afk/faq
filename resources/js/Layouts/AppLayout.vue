@@ -10,8 +10,7 @@
             <h1>{{ page.props.title }}</h1>
             <p>{{ page.props.description }}</p>
             <div v-if="isLandingPage" class="hero-search">
-              <input v-model="query" placeholder="Suche nach etwas …" />
-              <button @click="search">Suchen</button>
+              <Searchbar/>
             </div>
           </template>
         </Hero>
@@ -40,6 +39,7 @@ import { usePage, Link } from '@inertiajs/vue3'
 import '../../css/app.css'
 import Navbar from '@/Components/Navbar.vue'
 import Hero from './Hero.vue'
+import Searchbar from '@/Components/Searchbar.vue'
 
 const page = usePage()
 const flashMessage = ref('')
