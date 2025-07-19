@@ -1,4 +1,6 @@
 <template>
+  <WelcomeHead :faqs="props.faqs" />
+
   <section class="tabs-section" aria-label="Themenbereiche">
     <CategoryTabs
       :categories="categories"
@@ -21,12 +23,14 @@
 </template>
 
 <script setup>
+import { ref, computed, inject } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import CategoryTabs from '@/Components/CategoryTabs.vue'
 import FaqAccordion from '@/Components/FaqAccordion.vue';
-import { ref, computed, inject } from 'vue'
-import '../../css/welcome.css'
 import FaqContact from '@/Components/FaqContact.vue';
+import WelcomeHead from '@/Components/Seo/WelcomeHead.vue';
+import '../../css/welcome.css'
+
 
 defineOptions({ layout: AppLayout })
 
