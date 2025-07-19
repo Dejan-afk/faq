@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, computed, inject } from 'vue'
+import { ref, computed, inject, onMounted } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import CategoryTabs from '@/Components/CategoryTabs.vue'
 import FaqAccordion from '@/Components/FaqAccordion.vue';
@@ -37,10 +37,18 @@ defineOptions({ layout: AppLayout })
 const props = defineProps({
     faqs: Array,
     categories: Array,
+    initialCategoryId: String | Number
 });
 
 const selectedCategory = ref(props.categories[0]?.id || null);
+const loadedFaqs = ref({ [props.initialCategoryId]: props.faqs })
 const searchTerm = inject('searchTerm')
+
+/* Führt sequentiell geladene FAQs wieder zusammen für Suchfeld */
+const allFaqs = computed(() => {
+  return Object.values(loadedFaqs.value).flat()
+})
+
 
 /**
  * Filtert Fragen und Antworten im Akkordion clientseitig.
@@ -51,7 +59,7 @@ const searchTerm = inject('searchTerm')
  * UX-Idee: highlighten der Kategorie-Tabs (ggfs. kleine Zahl oder Punkt)
  */
 const filtered = computed(() => {
-  return props.faqs.filter(faq => {
+  return allFaqs.value.filter(faq => {
     const searching = !!searchTerm.value?.trim()
     const searchWords = searchTerm.value.toLowerCase().split(/\s+/)
 
@@ -69,6 +77,25 @@ const filtered = computed(() => {
   })
 })
 
+/**
+ * Lädt FAQs sequentiell nach dem Rendern für schnellere UI/UX
+ */
+onMounted(async () => {
+  for (const category of props.categories) {
+    const id = category.id
+    if (id === props.initialCategoryId) continue
+    if (!loadedFaqs.value[id]) {
+      try {
+        const response = await fetch(`/api/faqs?category_id=${id}`)
+        if (!response.ok) throw new Error(`Fehler beim Laden von Kategorie ${id}`)
+        const data = await response.json()
+        loadedFaqs.value[id] = data
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+})
 
 const formatCategoryName = (id) => {
   const name = props.categories.find(c => c.id === id)?.name;

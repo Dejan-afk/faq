@@ -19,7 +19,7 @@ class FaqController extends Controller
         $search = $request->input('search');
 
         $faqs = Faq::query()
-            ->with(['category', 'tags'])
+            ->with(['category', 'tags']) /* Eager-Loading */
             ->when($search, function ($query, $search) {
                 $query->where(function ($q) use ($search) {
                     $q->where('question', 'like', "%{$search}%")

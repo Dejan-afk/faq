@@ -10,9 +10,12 @@ use App\Models\Category;
 
 
 Route::get('/', function () {
+    $initialCategory = Category::where('name', 'Allgemeines')->first();
+
     return Inertia::render('Welcome', [
-        'faqs' => Faq::all(),
+        'faqs' => Faq::where('category_id', $initialCategory->id)->with('tags')->get(),
         'categories' => Category::all(),
+        'initialCategoryId' => $initialCategory->id,
         'title' => 'Häufig gestellte Fragen',
         'description' => 'Willkommen in unserem Hilfsbereich! Hier finden Sie eine Sammlung der häufigsten Fragen und Antworten zu unseren Angeboten und Services. Finden Sie schnell und unkompliziert die Informationen, die Sie suchen.'
     ]);
