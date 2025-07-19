@@ -133,12 +133,29 @@ watch(() => form.answer, () => {
 })
 
 const submit = () => {
-  const request = props.faq
-    ? form.put(route('faqs.update', props.faq.id))
-    : form.post(route('faqs.store'))
-
-  request.then(() => emit('close'))
+  if (props.faq) {
+    form.put(route('faqs.update', props.faq.id), {
+      preserveScroll: true,
+      onSuccess: () => {
+        form.reset()
+        form.clearErrors()
+        emit('close')
+      }
+    })
+  }
+  form.post(route('faqs.store'), {
+    preserveScroll: true,
+    onSuccess: () => {
+      form.reset()
+      form.clearErrors()
+      emit('close')
+    }
+  })
 }
 
-const close = () => emit('close')
+const close = () => {
+  form.reset()
+  form.clearErrors()
+  emit('close')
+}
 </script>

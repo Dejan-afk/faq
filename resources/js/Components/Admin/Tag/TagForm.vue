@@ -62,14 +62,32 @@ const form = useForm({
 })
 
 const submit = () => {
-  const request = props.tag
-    ? form.put(route('tags.update', props.tag.id))
-    : form.post(route('tags.store'))
+  if (props.tag) {
+    return form.put(route('tags.update', props.tag.id), {
+      preserveScroll: true,
+      onSuccess: () => {
+        form.reset()
+        form.clearErrors()
+        emit('close')
+      }
+    })
+  }
 
-  request.then(() => emit('close'))
+  return form.post(route('tags.store'), {
+    preserveScroll: true,
+    onSuccess: () => {
+      form.reset()
+      form.clearErrors()
+      emit('close')
+    }
+  })
 }
 
-const close = () => emit('close')
+const close = () => {
+  form.reset()
+  form.clearErrors()
+  emit('close')
+}
 
 watch(
   () => props.tag,

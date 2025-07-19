@@ -39,6 +39,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { router } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import FaqForm from '@/Components/Admin/Faq/FaqForm.vue'
 import DeleteModal from '@/Components/Admin/DeleteModal.vue'
@@ -75,6 +76,16 @@ const edit = (faq) => {
 const destroy = (faq) => {
   editingFaq.value = faq
   showDeleteModal.value = true
+}
+
+const sort = (item, direction) => {
+  router.post(route('faqs.sort', item.id), {
+    direction,
+  }, {
+    preserveScroll: true,
+    preserveState: true,
+    replace: true,
+  })
 }
 
 const closeModal = () => {
