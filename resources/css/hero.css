@@ -2,7 +2,15 @@
   position: relative;
   background-color: var(--clr-darkgreen-800);
   overflow: hidden;
-  height: clamp(320px, 36vh, 480px); /* feste Höhe für ruhiges Layout */
+}
+/* Standardhöhe für Landingpage */
+.hero.landing {
+  height: clamp(320px, 36vh, 480px);
+}
+
+/* Kompakter für Unterseiten */
+.hero.compact {
+  height: 280px;
 }
 
 /* Text-Overlay */
@@ -15,7 +23,11 @@
   justify-content: center;
   text-align: center;
   padding: 2rem 1rem;
-  padding-top: 8rem;
+  padding-top: 7rem;
+}
+
+.hero.compact .hero-overlay {
+  margin-top: 0.9rem;
 }
 
 /* Container für Dreiecke */
@@ -24,6 +36,15 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0.5rem 0 1rem 0;
+}
+.hero.compact .hero-container {
+  margin: 0;
 }
 
 /* Dreiecke */
@@ -105,6 +126,7 @@
 }
 
 .hero-overlay p {
+  margin-bottom: 1rem;
   font-size: clamp(0.9rem, 1.2vw, 1rem);
   font-weight: 400;
   line-height: 1.2;
@@ -114,43 +136,16 @@
   z-index: 2;
 }
 
-/* Suchfeld */
-.hero-search {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  z-index: 2;
-}
-
-.hero-search input {
-  flex: 1 1 auto;
-  min-width: 0;
-  padding: 0.55rem 0.8rem;
-  border-radius: 4px;
-  border: none;
-}
-
-.hero-search button {
-  flex-shrink: 0;
-  padding: 0.55rem 1.2rem;
-  background: var(--clr-brightgreen-200);
-  color: var(--clr-darkgreen-800);
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.hero-search button:hover {
-  transform: scale(1.05);
-}
-
 /* --- Media Queries --- */
 @media (max-width: 768px) {
   .hero {
     height: 380px;
+  }
+   .hero.landing {
+    height: 380px;
+  }
+  .hero.compact {
+    height: 240px;
   }
 
   .t1 {

@@ -1,4 +1,4 @@
-.modal-backdrop {
+.tag-modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
@@ -8,7 +8,7 @@
   z-index: 1000;
 }
 
-.modal {
+.tag-modal {
   background: white;
   padding: 2rem;
   border-radius: 8px;
@@ -17,43 +17,65 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-.modal h2 {
-  margin-bottom: 1rem;
-}
-
-.modal label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.modal input,
-.modal textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.modal-actions {
+.tag-modal-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.tag-modal-header h2 {
+  color: var(--clr-darkgreen-700);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0;
+  max-width: 75%;
+}
+
+.tag-modal-subline {
+  color: var(--clr-gray-600);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.tag-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--clr-gray-300);
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  background-color: var(--clr-gray-50);
+}
+
+.tag-modal-actions {
+  display: flex;
+  justify-content: space-between;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
-.modal-actions button {
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.modal-actions button:first-child {
-  background: #ccc;
-}
-
-.modal-actions button:last-child {
-  background: #007bff;
+.tag-modal-actions .btn-cancel {
+  background: var(--clr-red-500);
   color: white;
+}
+
+.tag-modal-actions .btn.save {
+  background: var(--clr-darkgreen-700);
+  color: var(--clr-brightgreen-200);
+}
+
+.tag-modal-actions .btn.save:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.tag-modal .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

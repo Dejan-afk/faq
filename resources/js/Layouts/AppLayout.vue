@@ -5,12 +5,14 @@
     </header>
 
     <section class="app-hero">
-        <Hero>
+        <Hero :is-landing="isLandingPage">
           <template #hero>
-            <h1>{{ page.props.title }}</h1>
+            <div class="hero-container">
+              <h1>{{ page.props.title }}</h1>
+            </div>
             <p>{{ page.props.description }}</p>
-            <div v-if="isLandingPage" class="hero-search">
-              <Searchbar/>
+            <div v-if="isLandingPage" class="hero-container">
+              <Searchbar variant="primary"/>
             </div>
           </template>
         </Hero>

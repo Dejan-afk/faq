@@ -1,8 +1,7 @@
 <template>
   <div class="dropdown-wrapper" style="width: 100%;">
-    <label :for="id">{{ label }}</label>
     <select :id="id" @change="addOption($event)" class="select">
-      <option value="">Bitte auswählen</option>
+      <option value="">{{ label }}</option>
       <option
         v-for="option in availableOptions"
         :key="option.id"
@@ -13,10 +12,15 @@
     </select>
 
     <div class="chips">
-      <span class="chip" v-for="id in modelValue" :key="id">
-        {{ findName(id) }}
-        <button type="button" @click="remove(id)">×</button>
-      </span>
+      <AppButton
+        v-for="id in modelValue"
+        :key="id"
+        :label="findName(id)"
+        icon="icon-remove.svg"
+        @click="remove(id)"
+        class="chip-button"
+        reverse
+      />
     </div>
   </div>
 </template>
@@ -24,6 +28,7 @@
 <script setup>
 import { computed } from 'vue'
 import '../../../css/dropdown.css'
+import AppButton from './AppButton.vue'
 const { id, label, options, modelValue } = defineProps({
   id: String,
   label: String,
@@ -38,7 +43,7 @@ function addOption(event) {
 
   emit('update:modelValue', [...modelValue, id])
 
-  // Reset Auswahl zurück auf "Bitte auswählen"
+  // Reset
   event.target.value = ''
 }
 

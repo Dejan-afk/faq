@@ -73,14 +73,20 @@
   background: var(--clr-brightgreen-200);
 }
 
-/* Icon Farbe */
+.faq-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
 .faq-toggle-icon svg {
   width: 0.9rem;
   height: 0.9rem;
   transition: transform 0.3s ease;
   transform: rotate(180deg);
   vertical-align: middle;
-  line-height: 0;
+  margin: auto;
+  transform-origin: center;
 }
 .faq-toggle-icon svg path {
   fill: var(--clr-white);

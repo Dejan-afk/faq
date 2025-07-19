@@ -1,5 +1,5 @@
 <template>
-  <section class="hero">
+  <section :class="['hero', isLanding ? 'landing' : 'compact']">
     <div class="hero-overlay">
       <div class="hero-background">
         <div class="triangle t1" :style="{ backgroundImage: `url(${TriangleBright})` }"></div>
@@ -17,5 +17,10 @@
 <script setup>
 import '../../css/hero.css'
 import TriangleBright from '@/assets/design-elements/triangle-bright-green.svg'
-import TriangleDark from '@/assets/design-elements/triangle-dark-green.svg'  
+import TriangleDark from '@/assets/design-elements/triangle-dark-green.svg'
+import { defineProps } from 'vue'
+
+defineProps({
+  isLanding: Boolean
+})
 </script>

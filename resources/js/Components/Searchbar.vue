@@ -8,7 +8,7 @@
     <AppButton
       label="Suchen"
       icon="icon-search.svg"
-      variant="secondary"
+      :variant="variant"
       type="submit"
     />
   </form>
@@ -24,6 +24,7 @@ const { placeholder = 'Fragen' } = defineProps({
     type: String,
     default: 'Fragen',
   },
+  variant: {type: String, default: "secondary"}
 })
 
 const search = ref('')
@@ -40,7 +41,7 @@ const performSearch = () => {
 .search-group {
   display: flex;
   border: 1px solid var(--clr-gray-200);
-  border-radius: 0.4rem;
+  border-radius: 0.4rem; /* todo: one sided more radius than other */
   overflow: hidden;
   background: white;
   flex: 1;

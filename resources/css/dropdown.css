@@ -31,10 +31,18 @@ label {
   align-items: center;
 }
 
-.chip button {
-  margin-left: 0.4rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-weight: bold;
+.chip-button {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  background-color: var(--clr-darkgreen-500);
+  color: white;
+  border-radius: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.chip-button svg {
+  width: 0.95rem;
+  height: 0.95rem;
 }

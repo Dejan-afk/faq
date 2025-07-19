@@ -1,8 +1,7 @@
 <template>
   <div class="dropdown-wrapper">
-    <label :for="id">{{ label }}</label>
     <select :id="id" v-model="internalValue" @change="onChange" class="select">
-      <option value="" disabled selected>Bitte auswählen</option>
+      <option value="" selected>{{ label }}</option>
       <option
         v-for="option in options"
         :key="option.id"
@@ -26,7 +25,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 
-const internalValue = ref(props.modelValue)
+const internalValue = ref(props.modelValue ?? '')
 watch(() => props.modelValue, v => (internalValue.value = v))
 function onChange() {
   emit('update:modelValue', internalValue.value)
