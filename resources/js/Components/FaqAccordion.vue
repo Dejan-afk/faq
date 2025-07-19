@@ -45,9 +45,17 @@ function toggle(id) {
   openId.value = openId.value === id ? null : id
 }
 function highlightMatch(text, term) {
-  if (!term) return text
-  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // regex escape for v-html; prevents xss
-  const regex = new RegExp(`(${escaped})`, 'gi')
+  if (!term || typeof text !== 'string') return text
+
+  const words = term
+    .split(/\s+/)                         // mehrere Wörter
+    .filter(w => w.length > 0)           // leere Strings raus
+    .map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // regex escape for v-html; prevents xss
+
+  if (words.length === 0) return text
+
+  const regex = new RegExp(`(${words.join('|')})`, 'gi') // Match any word
   return text.replace(regex, '<mark>$1</mark>')
 }
+
 </script>

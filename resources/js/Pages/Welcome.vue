@@ -48,19 +48,23 @@ const searchTerm = inject('searchTerm')
  */
 const filtered = computed(() => {
   return props.faqs.filter(faq => {
-    const matchesCategory =
+    const searching = !!searchTerm.value?.trim()
+    const searchWords = searchTerm.value.toLowerCase().split(/\s+/)
+
+    const text = [faq.question, faq.answer, ...(faq.tags || [])]
+      .join(' ')
+      .toLowerCase()
+
+    const matchesSearch = !searching || searchWords.every(word => text.includes(word))
+
+    const matchesCategory = !searching && (
       selectedCategory.value === null || faq.category_id === selectedCategory.value
+    )
 
-    const matchesSearch =
-      !searchTerm.value ||
-      [faq.question, faq.answer, ...(faq.tags || [])]
-        .join(' ')
-        .toLowerCase()
-        .includes(searchTerm.value.toLowerCase())
-
-    return matchesCategory && matchesSearch
+    return (matchesCategory || searching) && matchesSearch
   })
 })
+
 
 const formatCategoryName = (id) => {
   const name = props.categories.find(c => c.id === id)?.name;
