@@ -15,25 +15,28 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 import { router } from '@inertiajs/vue3'
 import AppButton from './Input/AppButton.vue'
 
-const { placeholder = 'Fragen' } = defineProps({
-  placeholder: {
-    type: String,
-    default: 'Fragen',
-  },
-  variant: {type: String, default: "secondary"}
-})
-
+const emit = defineEmits(['search'])
 const search = ref('')
 
+const props = defineProps({
+  variant: String,
+  placeholder: { type: String, default: 'Fragen' },
+  client: Boolean
+})
+
 const performSearch = () => {
-  router.get(route('faqs.index'), { search: search.value }, {
-    preserveScroll: true,
-    replace: true,
-  })
+  if (props.client) {
+    emit('search', search.value)
+  } else {
+    router.get(route('faqs.index'), { search: search.value }, {
+      preserveScroll: true,
+      replace: true,
+    })
+  }
 }
 </script>
 

@@ -12,7 +12,7 @@
             </div>
             <p>{{ page.props.description }}</p>
             <div v-if="isLandingPage" class="hero-container">
-              <Searchbar variant="primary"/>
+              <Searchbar variant="primary" client @search="searchTerm = $event"/>
             </div>
           </template>
         </Hero>
@@ -36,8 +36,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-import { usePage, Link } from '@inertiajs/vue3'
+import { ref, watch, provide } from 'vue'
+import { usePage } from '@inertiajs/vue3'
 import '../../css/app.css'
 import Navbar from '@/Components/Navbar.vue'
 import Hero from './Hero.vue'
@@ -45,8 +45,9 @@ import Searchbar from '@/Components/Searchbar.vue'
 
 const page = usePage()
 const flashMessage = ref('')
-const query = ref('')
 const isLandingPage = page.url === '/'
+const searchTerm = ref('')
+provide('searchTerm', searchTerm)
 
 watch(() => page.props.flash, (newFlashMessage) => {
   if (newFlashMessage?.success || newFlashMessage?.error) {
