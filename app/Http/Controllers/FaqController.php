@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class FaqController extends Controller
 {
@@ -29,6 +30,7 @@ class FaqController extends Controller
                     });
                 });
             })
+            ->orderBy('sort_order')
             ->get();
 
         return Inertia::render('Admin/Faq', [
@@ -58,20 +60,41 @@ class FaqController extends Controller
     {
         $validated = $request->validate($this->rules());
 
+        $categoryId = $validated['category'];
+
+        // höchste sort_order pro Kategorie
+        $maxSortInCategory = Faq::where('category_id', $categoryId)->max('sort_order');
+
+        if ($maxSortInCategory !== null) {
+            $insertPosition = $maxSortInCategory + 1;
+
+            // Alle Einträge danach verschieben
+            Faq::where('sort_order', '>=', $insertPosition)
+                ->where('category_id', '!=', $categoryId)
+                ->increment('sort_order');
+        } else {
+            // Kategorie hat noch keine Fragen → wir müssen die erste Position **vor** der nächsten Kategorie finden
+            $minSortOther = Faq::where('category_id', '!=', $categoryId)->min('sort_order') ?? 0;
+
+            // Alles ab dieser Stelle verschieben
+            Faq::where('sort_order', '>=', $minSortOther)->increment('sort_order');
+
+            $insertPosition = $minSortOther;
+        }
+
         $faq = Faq::create([
-            'question'    => $validated['question'],
-            'answer'      => $validated['answer'],
-            'category_id' => $validated['category'],
+            'question'     => $validated['question'],
+            'answer'       => $validated['answer'],
+            'category_id'  => $categoryId,
+            'sort_order'   => $insertPosition,
         ]);
 
-        // Tags zuordnen
         $faq->tags()->sync($validated['tags'] ?? []);
 
         return redirect()
             ->route('faqs.index')
             ->with('success', 'FAQ erfolgreich erstellt.');
     }
-
 
     /**
      * Display the specified resource.
@@ -122,6 +145,25 @@ class FaqController extends Controller
             ->route('faqs.index')
             ->with('success', 'FAQ erfolgreich gelöscht.');
     }
+
+    public function sort(Request $request, Faq $faq)
+    {
+        $direction = $request->input('direction'); // 'up' oder 'down'
+
+        $swapFaq = Faq::where('sort_order', $direction === 'up'
+                ? '<' : '>', $faq->sort_order)
+            ->orderBy('sort_order', $direction === 'up' ? 'desc' : 'asc')
+            ->first();
+
+        if ($swapFaq) {
+            [$faq->sort_order, $swapFaq->sort_order] = [$swapFaq->sort_order, $faq->sort_order];
+            $faq->save();
+            $swapFaq->save();
+        }
+
+        return back();
+    }
+
 
     /**
      * Validation rules for FAQ.

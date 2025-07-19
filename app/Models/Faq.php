@@ -13,7 +13,8 @@ class Faq extends Model
         'category_id', 
         'question', 
         'answer', 
-        'is_active'
+        'is_active',
+        'sort_order'
     ];
 
     protected $casts = [

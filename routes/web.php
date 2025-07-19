@@ -28,6 +28,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('faqs', FaqController::class)->except(['create', 'edit', 'show']);
     Route::resource('tags', TagController::class)->except(['create', 'edit', 'show']);
+    Route::post('/faqs/{faq}/sort', [FaqController::class, 'sort'])->name('faqs.sort');
 });
 
 require __DIR__.'/auth.php';

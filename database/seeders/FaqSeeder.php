@@ -34,7 +34,9 @@ class FaqSeeder extends Seeder
             Category::firstOrCreate(['name' => $name]); 
         }
 
-        // FAQs einfügen
+        // Sortierungsreihenfolge sequentiell da Seeding-Daten kategorisch sortiert sind
+        $sortOrder = 1;
+        // FAQS einfügen
         foreach ($faqData as $item) {
             $category = Category::where('name', $item['category'])->first();
 
@@ -51,6 +53,7 @@ class FaqSeeder extends Seeder
                     'category_id' => $category->id,
                     'answer'      => $item['answer'],
                     'is_active'   => true,
+                    'sort_order'  => $sortOrder++,
                 ]
             );
 
