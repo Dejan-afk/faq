@@ -8,7 +8,6 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class FaqController extends Controller
 {

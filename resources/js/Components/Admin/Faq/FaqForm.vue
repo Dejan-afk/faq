@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import AppButton from '@/Components/Input/AppButton.vue'
 import Dropdown from '../../Input/Dropdown.vue'
@@ -106,6 +106,7 @@ const form = useForm({
   highlighted: false
 })
 
+/* Änderungen dynamisch anpassen */
 watch(
   () => props.faq,
   (faq) => {
@@ -123,6 +124,7 @@ watch(
   { immediate: true }
 )
 
+/* Textarea passt sich dem Inhalt an */
 watch(() => form.answer, () => {
   nextTick(() => {
     if (answerTextarea.value) {

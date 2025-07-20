@@ -107,6 +107,7 @@
 .delete-modal-close:hover {
   background: var(--clr-darkgreen-600);
 }
+/* ---- Media Queries ---- */
 @media (max-width: 500px) {
   .delete-modal {
     padding: 1rem;

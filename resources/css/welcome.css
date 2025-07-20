@@ -4,7 +4,7 @@
   position: relative;
   margin-bottom: 3.5rem;
 }
-
+/* ---- Media Queries ---- */
 @media (max-width: 365px) {
   .tabs-section {
     margin-top: -2rem;

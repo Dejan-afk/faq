@@ -30,6 +30,7 @@
 import { computed } from 'vue'
 import '../../../css/dropdown.css'
 import AppButton from './AppButton.vue'
+
 const { id, label, options, modelValue } = defineProps({
   id: String,
   label: String,
@@ -37,6 +38,7 @@ const { id, label, options, modelValue } = defineProps({
   modelValue: Array,
   error: String,
 })
+
 const emit = defineEmits(['update:modelValue'])
 
 function addOption(event) {
@@ -49,11 +51,11 @@ function addOption(event) {
   event.target.value = ''
 }
 
-function remove(id) {
+const remove = (id) => {
   emit('update:modelValue', modelValue.filter((i) => i !== id))
 }
 
-function findName(id) {
+const findName = (id) => {
   const match = options.find((o) => o.id == id)
   return match?.name ?? id
 }

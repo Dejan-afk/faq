@@ -50,8 +50,8 @@ import '../../../css/faq.css'
 import SvgIcon from '@/Components/SvgIcon.vue'
 import AdminLayout from '@/Layouts/AdminLayout.vue'
 
-
 defineOptions({ layout: AdminLayout })
+
 const props = defineProps({ 
     faqs: Array,
     tags: Array,
@@ -63,6 +63,7 @@ const props = defineProps({
     title: String,
     description: String
 })
+
 const columns = [
   { key: 'question', label: 'Frage' },
   { key: 'category', label: 'Kategorie' },

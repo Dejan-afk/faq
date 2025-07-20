@@ -16,7 +16,6 @@
 
 <script setup>
 import { ref, defineProps, defineEmits, watch } from 'vue'
-import { router } from '@inertiajs/vue3'
 import AppButton from './Input/AppButton.vue'
 
 const emit = defineEmits(['search', 'update:modelValue'])

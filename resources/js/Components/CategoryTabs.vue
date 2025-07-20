@@ -23,6 +23,7 @@
 <script setup>
 import '../../css/category-tab.css'
 import SvgIcon from '@/Components/SvgIcon.vue'
+
 defineProps({
   categories: Array,
   selectedId: [String, Number],

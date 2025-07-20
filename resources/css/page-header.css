@@ -47,7 +47,7 @@
     min-height: 36px;
 }
 
-/* === Mobile === */
+/* ---- Media Queries ---- */
 @media screen and (max-width: 767px) {
   .search-and-create {
     flex-direction: column;

@@ -45,6 +45,7 @@ import '../../../css/tag.css'
 import AdminLayout from '@/Layouts/AdminLayout.vue'
 
 defineOptions({ layout: AdminLayout })
+
 const props = defineProps({
     tags: Array,
     //remove warns for now
@@ -54,10 +55,12 @@ const props = defineProps({
     title: String,
     description: String
 })
+
 const columns = [
   { key: 'name', label: 'Name' },
   { key: 'created_at', label: 'Erstellt am' },
 ]
+
 const showModal = ref(false)
 const showDeleteModal = ref(false)
 const editingTag = ref(null)
@@ -99,5 +102,4 @@ const filteredTags = computed(() => {
     return words.every(word => tag.name.toLowerCase().includes(word))
   })
 })
-
 </script>

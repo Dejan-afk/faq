@@ -59,6 +59,7 @@ const submit = () => {
   })
 }
 </script>
+
 <style scoped>
 .login-page {
   display: flex;

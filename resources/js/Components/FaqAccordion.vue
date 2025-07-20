@@ -41,10 +41,11 @@ const props = defineProps({
 
 const openId = ref(null)
 
-function toggle(id) {
+const toggle = (id) => {
   openId.value = openId.value === id ? null : id
 }
-function highlightMatch(text, term) {
+
+const highlightMatch = (text, term) => {
   if (!term || typeof text !== 'string') return text
 
   const words = term
@@ -57,5 +58,4 @@ function highlightMatch(text, term) {
   const regex = new RegExp(`(${words.join('|')})`, 'gi') // Match any word
   return text.replace(regex, '<mark>$1</mark>')
 }
-
 </script>

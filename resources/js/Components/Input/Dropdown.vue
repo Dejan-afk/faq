@@ -28,6 +28,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const internalValue = ref(props.modelValue ?? '')
+
 watch(() => props.modelValue, v => (internalValue.value = v))
 function onChange() {
   emit('update:modelValue', internalValue.value)

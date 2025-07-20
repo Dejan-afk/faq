@@ -70,16 +70,17 @@ import '../../css/navbar.css'
 import AppButton from './Input/AppButton.vue'
 import { router } from '@inertiajs/vue3'
 
-const logout = () => {
-  router.visit('/logout', {
-    method: 'post'
-  })
-}
-
 const navOpen = ref(false)
 const page = usePage()
 
 const isLoggedIn = computed(() => !!page.props.auth?.user)
 const isAdmin = computed(() => page.props.auth?.user?.role === 'admin')
 const currentUrl = computed(() => page.url)
+
+const logout = () => {
+  router.visit('/logout', {
+    method: 'post'
+  })
+}
+
 </script>

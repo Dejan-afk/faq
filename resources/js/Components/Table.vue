@@ -77,6 +77,7 @@ const paginatedItems = computed(() =>
 )
 
 const prevPage = () => currentPage.value > 1 && currentPage.value--
+
 const nextPage = () =>
   currentPage.value < totalPages.value && currentPage.value++
 
@@ -87,6 +88,7 @@ const formatDate = (date) => {
     year: 'numeric',
   })
 }
+
 const formatCell = (value, key) => {
   if (key === 'category' && typeof value === 'object') {
     return value.name
