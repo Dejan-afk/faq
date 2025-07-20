@@ -1,5 +1,5 @@
 <template>
-  <WelcomeHead :faqs="props.faqs" />
+  <WelcomeHead v-if="!isLoading" :faqs="store.faqs.value" />
 
   <section class="tabs-section" aria-label="Themenbereiche">
     <CategoryTabs
@@ -23,12 +23,13 @@
 </template>
 
 <script setup>
-import { ref, computed, inject, onMounted } from 'vue'
+import { ref, computed, inject, onMounted, watch } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import CategoryTabs from '@/Components/CategoryTabs.vue'
 import FaqAccordion from '@/Components/FaqAccordion.vue';
 import FaqContact from '@/Components/FaqContact.vue';
 import WelcomeHead from '@/Components/Seo/WelcomeHead.vue';
+import { useFaqStore } from '@/Stores/useFaqStore';
 import '../../css/welcome.css'
 
 
@@ -37,9 +38,18 @@ defineOptions({ layout: AppLayout })
 const props = defineProps({
     faqs: Array,
     categories: Array,
-    initialCategoryId: String | Number
+    initialCategoryId: String | Number,
+    //remove warns for now
+    errors: Object,
+    auth: Object,
+    flash: Object,
+    title: String,
+    description: String
 });
 
+const isLoading = ref(true)
+const store = useFaqStore()
+store.setCategories(props.categories)
 const selectedCategory = ref(props.categories[0]?.id || null);
 const loadedFaqs = ref({ [props.initialCategoryId]: props.faqs })
 const searchTerm = inject('searchTerm')
@@ -49,11 +59,20 @@ const allFaqs = computed(() => {
   return Object.values(loadedFaqs.value).flat()
 })
 
+/* Wenn alle FAQs geladen in den Speicher packen 
+*  UseCase war anders gedacht. Jetzt für SEO + Lazy-Loading verwendet
+*/
+watch(allFaqs, (val) => {
+  if (val.length > 0) {
+    store.setFaqs(val)
+  }
+  isLoading.value = false
+}, { immediate: true })
 
 /**
  * Filtert Fragen und Antworten im Akkordion clientseitig.
  * Fragen bleiben pro Kategorie aufgeteilt; dementsprechend Ergebnisse
- * auch nur angezeigt, wenn die richtige Kategorie ausgewählt ist. 
+ * nur angezeigt, wenn die richtige Kategorie ausgewählt ist. 
  * 
  * Über Funktionalität kann man diskutieren. 
  * UX-Idee: highlighten der Kategorie-Tabs (ggfs. kleine Zahl oder Punkt)
@@ -76,6 +95,7 @@ const filtered = computed(() => {
     return (matchesCategory || searching) && matchesSearch
   })
 })
+
 
 /**
  * Lädt FAQs sequentiell nach dem Rendern für schnellere UI/UX
