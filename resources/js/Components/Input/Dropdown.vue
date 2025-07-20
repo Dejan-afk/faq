@@ -10,6 +10,7 @@
         {{ option.name }}
       </option>
     </select>
+    <p v-if="error" class="form-error">{{ error }}</p>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ const props = defineProps({
   label: String,
   options: Array,
   modelValue: [String, Number, null],
+  error: String,
 })
 const emit = defineEmits(['update:modelValue'])
 

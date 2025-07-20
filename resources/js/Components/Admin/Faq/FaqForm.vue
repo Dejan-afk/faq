@@ -23,6 +23,7 @@
           placeholder="Frage eingeben"
           required
         />
+        <p v-if="form.errors.question" class="form-error">{{ form.errors.question }}</p>
         <div class="highlight-toggle">
           <label class="checkbox-label">
             <input type="checkbox" v-model="form.highlighted" />
@@ -41,13 +42,14 @@
           required
           rows="6"
         />
-
+        <p v-if="form.errors.answer" class="form-error">{{ form.errors.answer }}</p>
         <div class="dropdowns">
           <DropdownMultiple
             id="tags"
             label="Tags auswählen"
             :options="tags"
             v-model="form.tags"
+            :error="form.errors.tags"
           />
 
           <Dropdown
@@ -55,6 +57,7 @@
             label="Kategorie auswählen"
             :options="categories"
             v-model="form.category"
+            :error="form.errors.category"
           />
         </div>
 

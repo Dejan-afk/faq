@@ -22,6 +22,7 @@
         reverse
       />
     </div>
+    <p v-if="error" class="form-error">{{ error }}</p>
   </div>
 </template>
 
@@ -34,6 +35,7 @@ const { id, label, options, modelValue } = defineProps({
   label: String,
   options: Array,
   modelValue: Array,
+  error: String,
 })
 const emit = defineEmits(['update:modelValue'])
 

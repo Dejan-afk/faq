@@ -22,7 +22,7 @@
           placeholder="Tag Namen eingeben"
           required
         />
-
+        <p v-if="form.errors.name" class="form-error">{{ form.errors.name }}</p>
         <div class="tag-modal-actions">
           <AppButton
             label="Abbrechen"

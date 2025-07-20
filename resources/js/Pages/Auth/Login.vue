@@ -14,12 +14,14 @@
           placeholder="E-Mail-Adresse"
           required
         />
+        <p v-if="form.errors.email" class="form-error">{{ form.errors.email }}</p>
         <input
           v-model="form.password"
           type="password"
           placeholder="Passwort"
           required
         />
+        <p v-if="form.errors.password" class="form-error">{{ form.errors.password }}</p>
 
         <label class="remember">
           <input type="checkbox" v-model="form.remember" />
