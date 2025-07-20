@@ -138,7 +138,12 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        $faq->tags()->detach(); // Tags entfernen
+        // Sortierung korrigieren: alle nachfolgenden in derselben Kategorie rücken auf
+        Faq::where('category_id', $faq->category_id)
+            ->where('sort_order', '>', $faq->sort_order)
+            ->decrement('sort_order');
+
+        $faq->tags()->detach();
         $faq->delete();
 
         return redirect()
