@@ -31,4 +31,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/faqs/{faq}/sort', [FaqController::class, 'sort'])->name('faqs.sort');
 });
 
+Route::fallback(fn () => inertia('NotFound'))->name('fallback');
+
 require __DIR__.'/auth.php';
