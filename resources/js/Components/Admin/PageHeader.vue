@@ -9,6 +9,7 @@
       <Searchbar
         v-model="searchModel"
         :placeholder="searchPlaceholder"
+        :client="true"
         @search="$emit('search', searchModel)"
       />
       <AppButton

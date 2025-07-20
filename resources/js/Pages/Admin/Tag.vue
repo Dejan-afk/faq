@@ -2,14 +2,16 @@
     <!-- Header -->
     <PageHeader
       title="Tag Verwaltung"
-      :subtitle="`${tags.length} Tags insgesamt`"
+      :subtitle="`${filteredTags.length} Tags insgesamt`"
+      v-model="searchTerm"
+      :client="true"
       search-placeholder="Tags"
       action-label="Neuen Tag erstellen"
       action-icon="icon-close.svg"
       @action="create"
     />
     <!-- Table -->
-    <Table :columns="columns" :items="tags">
+    <Table :columns="columns" :items="filteredTags">
       <template #actions="{ item }">
         <SvgIcon name="edit" @click="edit(item)" class="action-btn" src="icon-edit.svg" />
         <SvgIcon name="delete" @click="destroy(item)" class="action-btn" src="icon-delete.svg" />
@@ -39,11 +41,17 @@ import Table from '@/Components/Table.vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import TagForm from '@/Components/Admin/Tag/TagForm.vue'
 import DeleteModal from '@/Components/Admin/DeleteModal.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import '../../../css/tag.css'
 defineOptions({ layout: AppLayout })
-defineProps({
+const props = defineProps({
     tags: Array,
+    //remove warns for now
+    errors: Object,
+    auth: Object,
+    flash: Object,
+    title: String,
+    description: String
 })
 const columns = [
   { key: 'name', label: 'Name' },
@@ -52,6 +60,8 @@ const columns = [
 const showModal = ref(false)
 const showDeleteModal = ref(false)
 const editingTag = ref(null)
+const searchTerm = ref('')
+
 
 const create = () => {
   editingTag.value = null
@@ -73,4 +83,20 @@ const closeModal = () => {
   showDeleteModal.value = false
   editingTag.value = null
 }
+
+/**
+ * Filtert Fragen und Antworten im Akkordion clientseitig.
+ * Über Funktionalität kann man diskutieren. 
+ */
+const filteredTags = computed(() => {
+  const search = searchTerm.value.toLowerCase().trim()
+  if (!search) return props.tags
+
+  const words = search.split(/\s+/)
+
+  return props.tags.filter(tag => {
+    return words.every(word => tag.name.toLowerCase().includes(word))
+  })
+})
+
 </script>

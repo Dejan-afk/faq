@@ -15,24 +15,33 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref, defineProps, defineEmits, watch } from 'vue'
 import { router } from '@inertiajs/vue3'
 import AppButton from './Input/AppButton.vue'
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'update:modelValue'])
 const search = ref('')
 
 const props = defineProps({
   variant: String,
   placeholder: { type: String, default: 'Fragen' },
-  client: Boolean
+  client: Boolean,
+  modelValue: String
+})
+
+watch(() => props.modelValue, (val) => {
+  search.value = val || ''
+}, { immediate: true })
+
+watch(search, (val) => {
+  emit('update:modelValue', val)
 })
 
 const performSearch = () => {
   if (props.client) {
     emit('search', search.value)
   } else {
-    router.get(route('faqs.index'), { search: search.value }, {
+    router.get(route('faqs.index'), { search: search.value }, { /* more dynamic! */
       preserveScroll: true,
       replace: true,
     })
