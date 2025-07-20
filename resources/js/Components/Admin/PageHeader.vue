@@ -10,6 +10,7 @@
         v-model="searchModel"
         :placeholder="searchPlaceholder"
         :client="true"
+        :variant="searchButtonVariant"
         @search="$emit('search', searchModel)"
       />
       <AppButton
@@ -37,6 +38,8 @@ const props = defineProps({
   actionLabel: String,
   actionIcon: String,
   modelValue: String,
+  searchButtonVariant: String,
+
 })
 
 const emit = defineEmits(['update:modelValue', 'search', 'action'])

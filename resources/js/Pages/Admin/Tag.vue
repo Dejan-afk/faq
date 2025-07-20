@@ -38,12 +38,13 @@
 import SvgIcon from '@/Components/SvgIcon.vue'
 import PageHeader from '@/Components/Admin/PageHeader.vue'
 import Table from '@/Components/Table.vue'
-import AppLayout from '@/Layouts/AppLayout.vue'
 import TagForm from '@/Components/Admin/Tag/TagForm.vue'
 import DeleteModal from '@/Components/Admin/DeleteModal.vue'
 import { ref, computed } from 'vue'
 import '../../../css/tag.css'
-defineOptions({ layout: AppLayout })
+import AdminLayout from '@/Layouts/AdminLayout.vue'
+
+defineOptions({ layout: AdminLayout })
 const props = defineProps({
     tags: Array,
     //remove warns for now

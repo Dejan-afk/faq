@@ -10,7 +10,7 @@
 
 /* Kompakter für Unterseiten */
 .hero.compact {
-  height: 280px;
+  height: 300px;
 }
 
 /* Text-Overlay */
@@ -64,6 +64,20 @@
   height: 120px;
   top: 16%;
   left: 14%;
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-brightgreen-200); /* Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t1 {
+  background-color: var(--clr-brightgreen-100); /* Farbe steuerbar! */
+  opacity: 0.9;
 }
 
 .t2 {
@@ -71,6 +85,21 @@
   height: 150px;
   bottom: -35%;
   left: 27%;
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-brightgreen-200); /* Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t2 {
+  bottom: -66%;
+  background-color: var(--clr-brightgreen-200); /* Farbe steuerbar! */
+  opacity: 0.9;
 }
 
 .t3 {
@@ -78,6 +107,22 @@
   height: 100px;
   top: 54%;
   right: 17%;
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-bright-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-brightgreen-200); /* Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t3 {
+  top: 58%;
+  right: 17.5%;
+  background-color: var(--clr-brightgreen-300); /* Farbe steuerbar! */
+  opacity: 1;
 }
 
 .t4 {
@@ -86,6 +131,23 @@
   bottom: 26%;
   left: 17%;
   --angle: 180deg;
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-darkgreen-300);  /*Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t4 {
+  width: 75px;
+  height: 75px;
+  bottom: 14%;
+  background-color: var(--clr-darkgreen-300); /* Farbe steuerbar! */
+  opacity: 1;
 }
 
 .t5 {
@@ -94,6 +156,22 @@
   bottom: -17%;
   right: 32%;
   --angle: 180deg;
+
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-darkgreen-300); /* Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t5 {
+  bottom: -40%;
+  background-color: var(--clr-darkgreen-400); /* Farbe steuerbar! */
+  opacity: 0.9;
 }
 
 .t6 {
@@ -102,6 +180,22 @@
   top: -2%;
   right: 17%;
   --angle: 180deg;
+
+  /* SVG als Maske */
+  -webkit-mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-image: url('@/assets/design-elements/triangle-dark-green.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  background-color: var(--clr-darkgreen-300); /* Farbe steuerbar! */
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+.hero.compact .t6 {
+  top: -7%;
+  background-color: var(--clr-darkgreen-300); /* Farbe steuerbar! */
+  opacity: 0.9;
 }
 
 /* Animation */
@@ -179,3 +273,9 @@
     right: -31%;
   }
 }
+@media (max-width: 365px) {
+  .hero.landing {
+    height: 420px;
+  }
+}
+

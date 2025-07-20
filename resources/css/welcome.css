@@ -4,3 +4,10 @@
   position: relative;
   margin-bottom: 3.5rem;
 }
+
+@media (max-width: 365px) {
+  .tabs-section {
+    margin-top: -2rem;
+    margin-bottom: 1.5rem;
+  }
+}

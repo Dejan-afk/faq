@@ -3,12 +3,9 @@
     <div class="tag-modal">
       <div class="tag-modal-header">
         <h2>{{ tag ? 'Tag bearbeiten' : 'Neuen Tag erstellen' }}</h2>
-        <AppButton
-          icon="icon-close.svg"
-          class="btn close"
-          @click="close"
-          as="button"
-        />
+        <button class="tag-modal-close" @click="close" aria-label="Schließen">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
       <p class="tag-modal-subline">Vergeben Sie einen aussagekräftigen Namen für den neuen Tag</p>

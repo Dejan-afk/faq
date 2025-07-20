@@ -3,12 +3,9 @@
     <div class="faq-modal">
       <div class="faq-modal-header">
         <h2>{{ faq ? 'Frage bearbeiten' : 'Neue Frage erstellen' }}</h2>
-        <AppButton
-          icon="icon-close.svg"
-          class="btn close"
-          @click="close"
-          as="button"
-        />
+        <button class="faq-modal-close" @click="close" aria-label="Schließen">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
       <p class="faq-modal-subline">

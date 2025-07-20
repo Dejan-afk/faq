@@ -9,13 +9,15 @@
 }
 
 .faq-modal {
-  background: var(--clr-gray-100); /* ?? */
+  background: var(--clr-gray-100);
   padding: 1.5rem 2rem;
   border-radius: 8px;
-  min-width: 750px;
+  width: 90%;
+  max-width: 750px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   position: relative;
 }
+
 .faq-modal-subline {
   font-size: 0.8rem;
   color: var(--clr-gray-500);
@@ -125,6 +127,33 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.faq-modal-close {
+  background: var(--clr-darkgreen-500);
+  color: white;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+}
+/* center x in close */ 
+.faq-modal-close span {
+  display: inline-block;
+  transform: translateY(-4px);
+}
+
+.faq-modal-close:hover {
+  background: var(--clr-darkgreen-600);
+}
+
 .faq-modal .highlight-toggle {
   display: flex;
   flex-direction: column;
@@ -158,19 +187,6 @@
   line-height: 1; 
 }
 
-.btn.close {
-  background: var(--clr-darkgreen-500);
-  color: white;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  margin-left: auto;
-}
 .faq-modal .sr-only {
   position: absolute;
   width: 1px;
@@ -180,4 +196,34 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+@media (max-width: 500px) {
+  .faq-modal {
+    padding: 1rem;
+  }
+
+  .faq-modal-header {
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .faq-modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .dropdowns {
+    flex-direction: column;
+  }
+
+  .faq-modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .faq-modal-actions .btn {
+    width: 100%;
+  }
+
+  .modal-close {
+    align-self: flex-end;
+  }
 }

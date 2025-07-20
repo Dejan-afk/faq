@@ -6,12 +6,9 @@
           Sind Sie sicher, dass Sie
           {{ item.question ? 'die folgende Frage' : 'den folgenden Tag' }} löschen wollen?
         </h2>
-        <AppButton
-          icon="icon-close.svg"
-          class="btn close"
-          @click="close"
-          as="button"
-        />
+        <button class="delete-modal-close" @click="close" aria-label="Schließen">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
 
       <div class="delete-modal-body">

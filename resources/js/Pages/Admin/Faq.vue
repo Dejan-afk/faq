@@ -42,17 +42,16 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { router } from '@inertiajs/vue3'
-import AppLayout from '@/Layouts/AppLayout.vue'
 import FaqForm from '@/Components/Admin/Faq/FaqForm.vue'
 import DeleteModal from '@/Components/Admin/DeleteModal.vue'
 import Table from '@/Components/Table.vue'
 import PageHeader from '@/Components/Admin/PageHeader.vue'
 import '../../../css/faq.css'
 import SvgIcon from '@/Components/SvgIcon.vue'
-import { useFaqStore } from '@/Stores/useFaqStore.js'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 
 
-defineOptions({ layout: AppLayout })
+defineOptions({ layout: AdminLayout })
 const props = defineProps({ 
     faqs: Array,
     tags: Array,

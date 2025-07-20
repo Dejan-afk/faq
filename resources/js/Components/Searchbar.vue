@@ -36,41 +36,50 @@ watch(() => props.modelValue, (val) => {
 watch(search, (val) => {
   emit('update:modelValue', val)
 })
-
-const performSearch = () => {
-  if (props.client) {
-    emit('search', search.value)
-  } else {
-    router.get(route('faqs.index'), { search: search.value }, { /* more dynamic! */
-      preserveScroll: true,
-      replace: true,
-    })
-  }
-}
 </script>
 
 <style scoped>
 .search-group {
   display: flex;
-  border: 1px solid var(--clr-gray-200);
-  border-radius: 0.4rem; /* todo: one sided more radius than other */
+  border: 1px solid var(--clr-gray-100);
+  border-radius: 0.6rem;
   overflow: hidden;
-  background: white;
+  background: var(--clr-gray-50); /* leicht abgesetzter Hintergrund */
   flex: 1;
   align-items: stretch;
 }
 
 .search-group input {
-  padding: 0.5rem 1.25rem;
-  border: none;
+  padding: 0.45rem 1rem;
+  border: none !important;
   background: transparent;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   flex: 1;
+  color: var(--clr-gray-800);
+  border-top-left-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
 }
 
-.search-group :deep(.app-button--secondary) {
-  border-radius: 0; /* entfernt doppelte Rundung rechts */
-  border-left: 1px solid var(--clr-gray-200); /* klare Trennung */
+@media (max-width: 365px) {
+  .search-group {
+    flex-wrap: nowrap;
+  }
+
+  .search-group input {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .app-button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+    white-space: nowrap;
+  }
+
+  .app-button svg {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
 }
 </style>
