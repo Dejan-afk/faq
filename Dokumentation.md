@@ -110,7 +110,10 @@ Folgende Punkte wurden im Projektumfang geplant, aber bewusst ausgeklammert oder
 - Weitere Error Handling Features (z. B. globale Fehlerseite, User-Feedback)  
 - Serverseitige Suche als optionales Upgrade bei wachsendem Datenvolumen  
 - Deep-Linking von Suchergebnissen  
-- Highlighting der Kategorie-Tabs bei aktivem Suchtreffer  
+- Highlighting der Kategorie-Tabs bei aktivem Suchtreffer
+- Detailiertere Umsetzung des Designs (Blur-Effekt hinter Navbar, Opacity der Navbar ohne dessen Inhalt zu beeinflussen, anderer Ansatz für Hero-Hintergrund)
+- Fragen mit is_active sichtbar machen, ohne entfernen zu müssen. 
+- Die Kontaktseite mit der Option freihändig Fragen anzufragen, oder - sofern is_active in der Zukunft implementiert wird - die Möglichkeit zu haben inaktive Fragen auszuwählen.  
 
 Diese Erweiterungen würden die Performance und Resilienz der Anwendung noch weiter verbessern.
 

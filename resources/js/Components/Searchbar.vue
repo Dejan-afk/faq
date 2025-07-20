@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, watch } from 'vue'
+import { ref, watch } from 'vue'
 import AppButton from './Input/AppButton.vue'
 
 const emit = defineEmits(['search', 'update:modelValue'])

@@ -50,10 +50,13 @@ npm install
 php artisan key:generate
 
 # Start der Datenbank und phpMyAdmin (Docker)
-docker-compose up -d
+docker-compose up -d --build
 
 # Migration und Seeding bei Erstanwendung
 docker exec -it faq_app php artisan migrate:fresh --seed
+
+#Starten des Dev-Servers zum Testen
+npm run dev
 ```
 
 ### 🧪 Testing vorbereiten
